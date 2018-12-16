@@ -3,23 +3,24 @@ import java.util.*;
 public class Ohjelma {
 
     public static void main(String[] args) {
-        double r0 = 100000; // Etäidyys maan pinnasta
+        double r0 = 100000; // Etäisyys maan pinnasta
         double rm = 6371000; // Maan säde
         double R = 384000000; // Maan ja kuun välinen etäisyys
-        double G = 6.67384 * Math.pow(10, -11);
-        double Mm = 5.974 * Math.pow(10, 24);
-        double Mk = 7.342 * Math.pow(10, 22);
-
+        double G = 6.67384 * Math.pow(10, -11); // Gravitaatiovakio
+        double Mm = 5.974 * Math.pow(10, 24); // Maan massa
+        double Mk = 7.342 * Math.pow(10, 22); // Kuun massa
+        // etäisyys jossa F_m = F_k
         double r = (2 * R * Mm - Math.sqrt(Math.pow(2 * R * Mm, 2) - 4 * Mm * Math.pow(R, 2) * (Mm - Mk))) / (2 * (Mm - Mk));
-        double v0 = Math.sqrt(2 * G * ((-Mm) / r + Mk / (R - r) + Mm / (r0 + rm) - Mk / R));
+        double v0 = Math.sqrt(2 * G * ((-Mm) / r + Mk / (R - r) + Mm / (r0 + rm) - Mk / R)); // Miniminopeus maasta
         double dt = 0.1; // aika-askeleen valitseminen
         double t = 0.0;
         double v1 = v0 ;
-        double RR = 384000000;
+        double RR = 384000000; // Maan ja kuun välinen etäisyys
         double a = 0.0;
 
         System.out.println("Matka pisteeseen jossa maan ja kuun gravitaativoimat ovat yhtä suuret "+ r+" m");
         System.out.println("Minimilähtönopeus " + v0+" m/s");
+        // Listat johon matkan data tallentuu
         ArrayList<Double> aika = new ArrayList<>();
         ArrayList<Double> matka = new ArrayList<>();
         ArrayList<Double> aika2 = new ArrayList<>();
@@ -33,7 +34,7 @@ public class Ohjelma {
         // laskee minimialkunopeudella ajan ja matkan
         while (r0 < RR) {
             a = -G * Mm / Math.pow(r0, 2) + G * Mk / Math.pow(RR - r0, 2);
-            v2 = (v1 + dt * a);
+            v2 = (v1 + dt * a); 
             r0 += (v1 + v2) * dt / 2;
             t += dt;
             v1 += dt * a;
