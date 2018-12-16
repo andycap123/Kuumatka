@@ -3,16 +3,16 @@ import java.util.*;
 public class Ohjelma {
 
     public static void main(String[] args) {
-        double r0 = 100000;
-        double rm = 6371000;
-        double R = 384000000;
+        double r0 = 100000; // Etäidyys maan pinnasta
+        double rm = 6371000; // Maan säde
+        double R = 384000000; // Maan ja kuun välinen etäisyys
         double G = 6.67384 * Math.pow(10, -11);
         double Mm = 5.974 * Math.pow(10, 24);
         double Mk = 7.342 * Math.pow(10, 22);
 
         double r = (2 * R * Mm - Math.sqrt(Math.pow(2 * R * Mm, 2) - 4 * Mm * Math.pow(R, 2) * (Mm - Mk))) / (2 * (Mm - Mk));
         double v0 = Math.sqrt(2 * G * ((-Mm) / r + Mk / (R - r) + Mm / (r0 + rm) - Mk / R));
-        double dt = 0.1; // aikaaskeleen valitseminen
+        double dt = 0.1; // aika-askeleen valitseminen
         double t = 0.0;
         double v1 = v0 ;
         double RR = 384000000;
