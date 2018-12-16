@@ -56,7 +56,7 @@ public class Ohjelma {
         // looppi laskee aika-askeleen välein aluksen kiihtyvyyden(a), hetkellisen nopeuden(v2) ja kuljetun matkan(r0) maan keskipisteestä
         // loopin lopussa aika ja matka lisätään vielä kahdelle listalle johon kaikki ajat ja nopeudet tallentuu 
         
-        // laskee 1.1 kertaisella miniminopeudella matkan ja ajan
+        // laskee matkan ja ajan kymmenen prosenttia miniminopeutta suuremmalla lähtönopeudella
         while (r0 < RR) {
             a = -G * Mm / Math.pow(r0, 2) + G * Mk / Math.pow(RR - r0, 2);
             v2 = (v1 + dt * a);
